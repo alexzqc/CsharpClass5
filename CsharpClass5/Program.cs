@@ -54,13 +54,31 @@ namespace CsharpClass5
             BankAccountStruct structAccount = new BankAccountStruct(NAME,BALANCE);
             BankAccountClass classAccount = new BankAccountClass(NAME, BALANCE);
 
-            structAccount.AddMonthlyInterest();
-            classAccount.AddMonthlyInterest();
+            BankAccountStruct copyStructAccount = structAccount;
+
+            BankAccountClass copyClassAccount = classAccount;
 
             structAccount.ShowDetails("Original Struct Account");
-            classAccount.ShowDetails("Original Struct Account");
+            copyStructAccount.ShowDetails("Copy Struct Account");
+            Console.WriteLine();
+
+            classAccount.ShowDetails("Original Class Account");
+            copyClassAccount.ShowDetails("Copy Class Account");
 
             Console.WriteLine();
+
+            copyStructAccount.AddMonthlyInterest();
+            copyClassAccount.AddMonthlyInterest();
+
+            structAccount.ShowDetails("Original Struct Account");
+            copyStructAccount.ShowDetails("Copy Struct Account");
+
+            Console.WriteLine();
+
+            classAccount.ShowDetails("Original Class Account");
+            copyClassAccount.ShowDetails("Copy Class Account");
+
+
             Console.WriteLine();
             Console.ReadLine();
         }
