@@ -3,39 +3,83 @@
 namespace CsharpClass5
 {
     class Program
-    {  
+    {
+        struct BankAccountStruct
+        {
+            public string Name { get; set; }
+            public float Balance { get; set; }
+            public BankAccountStruct(string name, float balance)
+            {
+                Name = name;
+                Balance = balance;
+            }
+            public void AddMonthlyInterest()
+            {
+                Balance *= (1f + .056f / 12f);
+            }
+            public void ShowDetails(string title)
+            {
+                Console.WriteLine($"Title: {title} \n Name: {Name} \n Balance: {Balance.ToString("C")}");
+            }
+        }
+        class BankAccountClass
+        {
+            public string Name { get; set; }
+            public float Balance { get; set; }
+            public BankAccountClass(string name, float balance)
+            {
+                Name = name;
+                Balance = balance;
+            }
+            public void AddMonthlyInterest()
+            {
+                Balance *= (1f + .056f / 12f);
+            }
+            public void ShowDetails(string title)
+            {
+                Console.WriteLine($"Title: {title} \n Name: {Name} \n Balance: {Balance.ToString("C")}");
+            }
+        }
         static void Main(string[] args)
         {
-            int x = 1;
-            int[] intArray = new int[] { 1, 2, 3 };
+            const string NAME = "Object Name";
+            const float BALANCE = 593473.03f;
+            BankAccountStruct structAccount = new BankAccountStruct(NAME, BALANCE);
+            BankAccountClass classAccount = new BankAccountClass(NAME, BALANCE);
 
-            Console.WriteLine(x);
-            foreach (int i in intArray)
-            {
-                Console.WriteLine(i);
-            }
+            structAccount.ShowDetails("Original Struct Account");
+            classAccount.ShowDetails("Original Class Account");
 
-            Console.WriteLine("----------------------------------------------");
-            AddOne(x);
-            AddOne(intArray);
 
-            Console.WriteLine(x);
-            foreach(int i in intArray)
-            {
-                Console.WriteLine(i);
-            }
+            Console.WriteLine("----------------------------------------------------");
+            Add100(structAccount);
+            Add100(classAccount);
+            structAccount.ShowDetails("Original add100 Struct Account");
+            classAccount.ShowDetails("Original add100 Class Account");
+
+
+            Console.WriteLine("----------------------------------------------------");
+            structAccount.Balance = Add100(structAccount.Balance);
+            classAccount.Balance = Add100(classAccount.Balance);
+            structAccount.ShowDetails("Original add 200 Struct Account");
+            classAccount.ShowDetails("Original add 200 Class Account");
+
             Console.ReadLine();
         }
-        static void AddOne(int x)
+
+        static void Add100(BankAccountStruct structAccount)
         {
-            x++;
+            structAccount.Balance += 100;
         }
-        static void AddOne(int[] intArray)
+
+        static void Add100(BankAccountClass classAccount)
         {
-            for (int i =0; i<intArray.Length;i++)
-            {
-                intArray[i]++;
-            }
+            classAccount.Balance += 100;
+        }
+
+        static float Add100(float balance)
+        {
+           return balance += 100;
         }
     }
 }
