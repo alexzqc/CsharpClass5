@@ -3,84 +3,39 @@
 namespace CsharpClass5
 {
     class Program
-    {   struct BankAccountStruct
-        {
-            public string Name { get; set; }
-            public float Balance { get; set; }
-
-            public BankAccountStruct(string name, float balance)
-            {
-                Name = name;
-                Balance = balance;
-            }
-
-            public void AddMonthlyInterest()
-            {
-                Balance *= (1f + .056f / 12f);
-            }
-
-            public void ShowDetails(string title)
-            {
-                Console.WriteLine($"Title: {title} \n Name: {Name} \n Balance: {Balance.ToString("C")}");
-            }
-        }
-
-        class BankAccountClass
-        {
-            public string Name { get; set; }
-            public float Balance { get; set; }
-
-            public BankAccountClass(string name, float balance)
-            {
-                Name = name;
-                Balance = balance;
-            }
-
-            public void AddMonthlyInterest()
-            {
-                Balance *= (1f +.056f / 12f);
-            }
-
-            public void ShowDetails(string title)
-            {
-                Console.WriteLine($"Title: {title} \n Name: {Name} \n Balance: {Balance.ToString("C")}");
-            }
-        }
+    {  
         static void Main(string[] args)
         {
-            const string NAME = "Object Name";
-            const float BALANCE = 593473.03f;
+            int x = 1;
+            int[] intArray = new int[] { 1, 2, 3 };
 
-            BankAccountStruct structAccount = new BankAccountStruct(NAME,BALANCE);
-            BankAccountClass classAccount = new BankAccountClass(NAME, BALANCE);
+            Console.WriteLine(x);
+            foreach (int i in intArray)
+            {
+                Console.WriteLine(i);
+            }
 
-            BankAccountStruct copyStructAccount = structAccount;
+            Console.WriteLine("----------------------------------------------");
+            AddOne(x);
+            AddOne(intArray);
 
-            BankAccountClass copyClassAccount = classAccount;
-
-            structAccount.ShowDetails("Original Struct Account");
-            copyStructAccount.ShowDetails("Copy Struct Account");
-            Console.WriteLine();
-
-            classAccount.ShowDetails("Original Class Account");
-            copyClassAccount.ShowDetails("Copy Class Account");
-
-            Console.WriteLine();
-
-            copyStructAccount.AddMonthlyInterest();
-            copyClassAccount.AddMonthlyInterest();
-
-            structAccount.ShowDetails("Original Struct Account");
-            copyStructAccount.ShowDetails("Copy Struct Account");
-
-            Console.WriteLine();
-
-            classAccount.ShowDetails("Original Class Account");
-            copyClassAccount.ShowDetails("Copy Class Account");
-
-
-            Console.WriteLine();
+            Console.WriteLine(x);
+            foreach(int i in intArray)
+            {
+                Console.WriteLine(i);
+            }
             Console.ReadLine();
+        }
+        static void AddOne(int x)
+        {
+            x++;
+        }
+        static void AddOne(int[] intArray)
+        {
+            for (int i =0; i<intArray.Length;i++)
+            {
+                intArray[i]++;
+            }
         }
     }
 }
